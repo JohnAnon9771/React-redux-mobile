@@ -1,13 +1,26 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Home from '../screens/Home';
+import Cart from '../screens/Cart';
+import Header from '../components/Header';
+
 const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="home" component={} />
-      <Stack.Screen name="cart" component={} />
+    <Stack.Navigator
+      headerMode="float"
+      screenOptions={{
+        header: navigation => <Header {...navigation} />,
+        headerStyle: {
+          backgroundColor: '#191920',
+        },
+        headerTintColor: '#fff',
+      }}
+    >
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="cart" component={Cart} />
     </Stack.Navigator>
   );
 }
