@@ -10,7 +10,7 @@ export default function Header({ navigation }) {
       <Cart>
         <IconCart
           name="shoppingcart"
-          size={32}
+          size={28}
           onPress={() => navigation.navigate('cart')}
         />
         <Item>3</Item>

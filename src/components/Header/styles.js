@@ -1,9 +1,11 @@
 import styled from 'styled-components/native';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 
 export const Container = styled.View`
-  position: absolute;
-  width: 375px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   height: 84px;
   left: 0px;
   top: 0px;
@@ -12,7 +14,6 @@ export const Container = styled.View`
 `;
 
 export const Logo = styled.Image`
-  position: absolute;
   width: 185px;
   height: 24px;
   left: 20px;
@@ -20,11 +21,9 @@ export const Logo = styled.Image`
 `;
 
 export const Cart = styled.View`
-  position: absolute;
-  width: 24px;
-  height: 26px;
-  left: 321px;
-  top: 38px;
+  justify-content: flex-end;
+  margin-left: 120px;
+  bottom: 14.5px;
 `;
 
 export const IconCart = styled(Icon)`
@@ -33,10 +32,13 @@ export const IconCart = styled(Icon)`
 
 export const Item = styled.Text`
   position: absolute;
-  width: 16px;
-  height: 16px;
-  left: 334px;
-  top: 34px;
+  text-align: center;
+  width: 20px;
+  bottom: 18px;
+  margin-left: 20px;
+  color: #fff;
+  border: 0px;
+  border-radius: 50px;
 
   background: #7159c1;
 `;
