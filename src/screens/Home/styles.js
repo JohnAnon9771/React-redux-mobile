@@ -5,6 +5,7 @@ export const ProductList = styled.FlatList.attrs({
 })`
   height: 358px;
   top: 10px;
+  margin: 0 10px 0 10px;
 `;
 
 export const Container = styled.View`
@@ -48,7 +49,9 @@ export const ButtonText = styled.Text`
 `;
 
 export const ItemCart = styled.Text`
-  margin: 0px 4px 0px 10px;
+  position: absolute;
+  left: 30px;
+  top: 10px;
   color: #fff;
 `;
 

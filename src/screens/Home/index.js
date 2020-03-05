@@ -50,7 +50,7 @@ export default function Home() {
             <Button>
               <ButtonIcon>
                 <Icon name="cart-plus" size={18} color="#fff" />
-                {/* <ItemCart>3</ItemCart> */}
+                <ItemCart>3</ItemCart>
               </ButtonIcon>
               <ButtonText>ADICIONAR</ButtonText>
             </Button>

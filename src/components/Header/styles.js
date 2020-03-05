@@ -2,26 +2,31 @@ import styled from 'styled-components/native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export const Container = styled.View`
+export const Wrapper = styled.SafeAreaView`
+  flex: 0;
   flex-direction: row;
-  height: 84px;
-  left: 0px;
-  top: 0px;
-
   background: #141419;
 `;
 
-export const Logo = styled.Image`
+export const Container = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  padding-top: 35px;
+  flex: 1;
+`;
+
+export const Logo = styled.Image.attrs({
+  resizeMode: 'cover',
+})`
   width: 185px;
   height: 24px;
-  left: 20px;
-  top: 40px;
 `;
 
 export const Cart = styled.View`
-  justify-content: flex-end;
-  margin-left: 120px;
-  bottom: 14.5px;
+  flex-direction: row;
+  align-items: center;
+  height: 24px;
 `;
 
 export const IconCart = styled(Icon)`
@@ -31,10 +36,10 @@ export const IconCart = styled(Icon)`
 export const Item = styled.Text`
   position: absolute;
   text-align: center;
-  width: 20px;
-  bottom: 18px;
-  margin-left: 20px;
+  left: 20px;
+  top: -9px;
   color: #fff;
+  width: 19px;
   border: 0px;
   border-radius: 50px;
 
