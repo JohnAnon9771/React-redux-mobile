@@ -3,9 +3,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 export const Container = styled.View`
-  display: flex;
   flex-direction: row;
-  width: 100%;
   height: 84px;
   left: 0px;
   top: 0px;

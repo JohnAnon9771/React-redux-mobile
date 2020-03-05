@@ -12,6 +12,7 @@ export default function Routes() {
     <Stack.Navigator
       headerMode="float"
       screenOptions={{
+        cardStyle: { backgroundColor: '#191920' },
         header: navigation => <Header {...navigation} />,
         headerStyle: {
           backgroundColor: '#191920',
