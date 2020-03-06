@@ -33,14 +33,16 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonIcon = styled.View`
-  display: flex;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  flex-direction: row;
   align-items: center;
+  display: flex;
   padding: 12px;
   background: rgba(0, 0, 0, 0.1);
 `;
 
 export const ButtonText = styled.Text`
-  line-height: 16px;
   height: 16px;
   left: 45%;
   right: 18%;
@@ -49,10 +51,8 @@ export const ButtonText = styled.Text`
 `;
 
 export const ItemCart = styled.Text`
-  position: absolute;
-  left: 30px;
-  top: 10px;
   color: #fff;
+  left: 5px;
 `;
 
 export const ProductTitle = styled.Text`
