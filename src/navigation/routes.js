@@ -14,9 +14,6 @@ export default function Routes() {
       screenOptions={{
         cardStyle: { backgroundColor: '#191920' },
         header: navigation => <Header {...navigation} />,
-        headerStyle: {
-          backgroundColor: '#191920',
-        },
         headerTintColor: '#fff',
       }}
     >
