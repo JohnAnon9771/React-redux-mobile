@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { ScrollView } from 'react-native';
+
+import { updateAmount, removeToCart } from '../../store/modules/cart/actions';
 
 import {
   Container,
-  List,
   Product,
   PhotoProduct,
   ProductTitle,
@@ -22,53 +26,75 @@ import {
   ButtonText,
 } from './styles';
 
+import { formatPrice } from '../../utils/formatPrice';
+
 export default function Cart() {
+  const { cart, total } = useSelector(state => {
+    return {
+      cart: state.cart.map(product => ({
+        ...product,
+        subtotal: formatPrice(product.price * product.amount),
+      })),
+      total: formatPrice(
+        state.cart.reduce((total, item) => {
+          return total + item.price * item.amount;
+        }, 0)
+      ),
+    };
+  });
+  const dispatch = useDispatch();
+
+  function increment(product) {
+    dispatch(updateAmount(product.id, product.amount + 1));
+  }
+
+  function decrement(product) {
+    dispatch(updateAmount(product.id, product.amount - 1));
+  }
   return (
-    <Container>
-      <List
-        data={[
-          {
-            id: 1,
-            title: 'Tenis de caminhada leve confortável',
-            price: 'R$182,89',
-            image:
-              'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-          },
-          {
-            id: 2,
-            title: 'Tenis de caminhada leve confortável',
-            price: 'R$182,89',
-            image:
-              'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-          },
-        ]}
-        keyExtractor={(item, index) => `list-item${index}`}
-        renderItem={({ item }) => (
-          <Product>
-            <PhotoProduct source={{ uri: item.image }} />
+    <ScrollView>
+      <Container>
+        {cart.map(product => (
+          <Product key={product.id}>
+            <PhotoProduct source={{ uri: product.image }} />
             <ProductInfo>
-              <ProductTitle>{item.title}</ProductTitle>
-              <ProductPrice>{item.price}</ProductPrice>
+              <ProductTitle>{product.title}</ProductTitle>
+              <ProductPrice>{product.priceFormatted}</ProductPrice>
             </ProductInfo>
-            <Remove name="md-trash" size={20} color="#7159c1" />
+            <Remove
+              name="md-trash"
+              size={20}
+              color="#7159c1"
+              onPress={() => dispatch(removeToCart(product.id))}
+            />
             <AmountInfo>
               <Quantity>
-                <Decrement name="minuscircleo" size={20} color="#7159c1" />
-                <Value value="3" />
-                <Increment name="pluscircleo" size={20} color="#7159c1" />
+                <Decrement
+                  name="minuscircleo"
+                  size={20}
+                  color="#7159c1"
+                  onPress={() => decrement(product)}
+                />
+                <Value value={`${product.amount}`} />
+                <Increment
+                  name="pluscircleo"
+                  size={20}
+                  color="#7159c1"
+                  onPress={() => increment(product)}
+                />
               </Quantity>
-              <Amount>{item.price}</Amount>
+              <Amount>{product.subtotal}</Amount>
             </AmountInfo>
           </Product>
-        )}
-      />
-      <ValueAmount>
-        <ValueText>TOTAL</ValueText>
-        <TotalPrice>R$1920,90</TotalPrice>
-      </ValueAmount>
-      <Button>
-        <ButtonText>FINALIZAR PEDIDO</ButtonText>
-      </Button>
-    </Container>
+        ))}
+        <ValueAmount>
+          <ValueText>TOTAL</ValueText>
+          <TotalPrice>{total}</TotalPrice>
+        </ValueAmount>
+        <Button>
+          <ButtonText>FINALIZAR PEDIDO</ButtonText>
+        </Button>
+      </Container>
+    </ScrollView>
   );
 }

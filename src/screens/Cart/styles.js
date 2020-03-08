@@ -11,10 +11,6 @@ export const Container = styled.View`
   margin: 15px;
 `;
 
-export const List = styled.FlatList.attrs({
-  scrollVerticalIndicator: false,
-})``;
-
 export const Product = styled.View`
   margin: 5px;
 `;

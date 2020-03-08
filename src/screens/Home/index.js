@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
+import { useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
+
+import { addToCart } from '../../store/modules/cart/actions';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -20,6 +24,7 @@ import {
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function getProducts() {
       const response = await api.get('/products');
@@ -47,7 +52,7 @@ export default function Home() {
             />
             <ProductTitle>{item.title}</ProductTitle>
             <ProductPrice>{item.priceFormatted}</ProductPrice>
-            <Button>
+            <Button onPress={() => dispatch(addToCart(item))}>
               <ButtonIcon>
                 <Icon name="cart-plus" size={18} color="#fff" />
                 <ItemCart>3</ItemCart>
