@@ -44,7 +44,6 @@ export default function Home() {
     }
     getProducts();
   }, []);
-
   return (
     <View>
       <ProductList
