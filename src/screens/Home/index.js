@@ -30,7 +30,7 @@ export default function Home() {
       amount: state.cart.reduce((amount, product) => {
         amount[product.id] = product.amount;
         return amount;
-      }, 0),
+      }, {}),
     };
   });
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function Home() {
             <Button onPress={() => dispatch(addToCartRequest(item.id))}>
               <ButtonIcon>
                 <Icon name="cart-plus" size={18} color="#fff" />
-                <ItemCart>{amount}</ItemCart>
+                <ItemCart>{amount[item.id] || 0}</ItemCart>
               </ButtonIcon>
               <ButtonText>ADICIONAR</ButtonText>
             </Button>
