@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import api from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
 
-import { addToCart } from '../../store/modules/cart/actions';
+import { addToCartRequest } from '../../store/modules/cart/actions';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -52,7 +52,7 @@ export default function Home() {
             />
             <ProductTitle>{item.title}</ProductTitle>
             <ProductPrice>{item.priceFormatted}</ProductPrice>
-            <Button onPress={() => dispatch(addToCart(item))}>
+            <Button onPress={() => dispatch(addToCartRequest(item.id))}>
               <ButtonIcon>
                 <Icon name="cart-plus" size={18} color="#fff" />
                 <ItemCart>3</ItemCart>
