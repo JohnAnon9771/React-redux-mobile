@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { ScrollView } from 'react-native';
 
-import { updateAmount, removeToCart } from '../../store/modules/cart/actions';
+import {
+  updateAmountRequest,
+  removeToCart,
+} from '../../store/modules/cart/actions';
 
 import {
   Container,
@@ -45,11 +48,11 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   function increment(product) {
-    dispatch(updateAmount(product.id, product.amount + 1));
+    dispatch(updateAmountRequest(product.id, product.amount + 1));
   }
 
   function decrement(product) {
-    dispatch(updateAmount(product.id, product.amount - 1));
+    dispatch(updateAmountRequest(product.id, product.amount - 1));
   }
   return (
     <ScrollView>

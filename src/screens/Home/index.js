@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import api from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
@@ -25,6 +25,14 @@ import {
 export default function Home() {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+  const { amount } = useSelector(state => {
+    return {
+      amount: state.cart.reduce((amount, product) => {
+        amount[product.id] = product.amount;
+        return amount;
+      }, 0),
+    };
+  });
   useEffect(() => {
     async function getProducts() {
       const response = await api.get('/products');
@@ -55,7 +63,7 @@ export default function Home() {
             <Button onPress={() => dispatch(addToCartRequest(item.id))}>
               <ButtonIcon>
                 <Icon name="cart-plus" size={18} color="#fff" />
-                <ItemCart>3</ItemCart>
+                <ItemCart>{amount}</ItemCart>
               </ButtonIcon>
               <ButtonText>ADICIONAR</ButtonText>
             </Button>
